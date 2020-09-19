@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+  font-family: "Ubuntu", sans-serif;
+}
+
+/* Typography  */
+h1 {
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: lighter;
+  color: teal;
+  text-transform: uppercase;
+  margin: 1em 0;
+}
+
+h3 {
+  letter-spacing: 2px;
+  color: teal;
+  text-align: center;
+  margin: 0;
+  font-weight: bold;
+}
+.Headline {
+  margin-top: 1rem;
+}
+
+/*  Body of the Page  */
+.container {
+  background-image: linear-gradient(180deg, #c2eaa2, transparent);
+  padding: 2em 0;
+}
+
+@media (min-width: 1024px) {
+  .container img {
+    display: block;
+    margin: 0 auto;
+    max-width: 20% !important;
+    object-fit: contain;
+  }
+}
+
+@media (min-width: 768px) {
+  .container img {
+    display: block;
+    margin: 0 auto;
+    max-width: 50%;
+    object-fit: contain;
+  }
+}
+
+.container img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  object-fit: contain;
+}
+
+/* For the under line below the Picture */
+
+.Portal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.myPic {
+  transition: all 0.4s ease-out;
+  box-shadow: 0px 35px 77px -17px rgba(0, 0, 0, 0.44);
+}
+
+/* Applied Hovers */
+.myPic:hover {
+  transform: scale(1.08);
+}
+
+hr {
+  width: 50%;
+  background-color: #707070;
+}
+
+.myUrl {
+  text-decoration: none;
+  color: lightsalmon;
+  transition: all 0.4s ease-out;
+}
+.myUrl:hover {
+  color: midnightblue;
+  cursor: pointer;
+}
+
+/* Footer Section of the page */
+footer {
+  background-image: linear-gradient(180deg, #c2eaa2, transparent);
+  padding: 1em 2em;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.firstFooter {
+  letter-spacing: 1px;
+  text-align: center;
+}
