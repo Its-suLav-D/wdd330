@@ -3,6 +3,10 @@ const links = [
     label: "Week 1 Notes",
     url: "https://www.facebook.com/",
   },
+  {
+    label: "Week 2 Team Activity",
+    url: "https://its-sulav-d.github.io/wdd330/Week02/index.html",
+  },
 ];
 
 links.forEach((link) => {
