@@ -7,6 +7,10 @@ const links = [
     label: "Week 2 Team Activity",
     url: "https://its-sulav-d.github.io/wdd330/Week02/index.html",
   },
+  {
+    label: "Week 3 Activities",
+    url: "https://its-sulav-d.github.io/wdd330/Week03/dashboard.html",
+  },
 ];
 
 links.forEach((link) => {
