@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 3 Notes</title>
+    <style>
+      img {
+        width: 60%;
+        object-fit: contain;
+        margin: 0 auto;
+        display: block;
+      }
+      hr {
+        width: 70%;
+        margin-top: 2em;
+        border: none;
+        background-color: lightgray;
+        height: 1px;
+      }
+      p {
+        margin-left: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Week 3 Notes</h1>
+    <h2>Object</h2>
+    <p>
+      An Object in JavaScript is a self-contained of related values and
+      functions. It stores value in key and value. An object literal is an
+      object that is created directly by using the curly braces. An Example of
+      Object Literal with method and attribute.
+    </p>
+    <img src="./image/object.png" alt="Object" />
+    <hr />
+
+    <h2>This</h2>
+    <p>
+      The keyword this refers to the object that is within. It can be used
+      inside methods to gain access to the object’s properties. For Example:
+    </p>
+    <p>
+      const dice = {<br />
+      sides: 6,<br />
+      roll() {<br />
+      return Math.floor(this.sides * Math.random()) + 1;<br />
+      }<br />
+      }
+    </p>
+    <hr />
+    <h2>JSON(JavaScript Object Notation)</h2>
+    <p>
+      JSON = (JavaScript Object Notation) A lightweight data-storage format that
+      is used by a large number of services for data serialization and
+      configuration. It is used to exchange the information between web
+      services. An example of JSON string representation:
+    </p>
+    <p>
+      const batman = '{"name": "Batman","real name": "Bruce Wayne","height": 74,
+      "weight": 210, "hero": true, "villain": false, "allies":
+      ["Robin","Batgirl","Superman"]}’
+    </p>
+    <p>
+      The Parse () Method takes a string of data in JSON format and returns a
+      JavaScript Object. <br />
+      JSON.parse(batman);<br />
+      << { name: 'Batman',<br />
+      'real name': 'Bruce Wayne',<br />
+      height: 74,<br />
+      weight: 210,<br />
+      hero: true,<br />
+      villain: false,<br />
+      allies: [ 'Robin', 'Batgirl', 'Superman' ] }<br />
+    </p>
+    <hr />
+    <p>
+      The Stringify () method does the opposite, taking the JavaScript object
+      and returning a string of JSON data
+    </p>
+
+    <p>
+      const wonderWoman = {<br />
+      name: 'Wonder Woman',<br />
+      'real name': 'Diana Prince',<br />
+      height: 72,<br />
+      weight: 165,<br />
+      hero: true,<br />
+      villain: false,<br />
+      allies: ['Wonder Girl','Donna Troy','Superman'],<br />
+      lasso: function(){<br />
+      console.log('You will tell the truth!');<br />
+      }<br />
+      }<br />
+      JSON.stringify(wonderWoman);<br />
+      << '{"name":"Wonder Woman","real name":"Diana Prince","height":72,
+      "weight":165,"hero":true,"villain":false,"allies":["Wonder Girl", "Donna
+      Troy","Superman"]}'
+    </p>
+    <hr />
+    <h2>The Math Object</h2>
+    <p>
+      The Math object is a built-in object that has several properties
+      representing mathematical constants. Importantly, all the properties and
+      methods of the Math object are immutable and unable to be changed. They
+      are all named CAPITAL for naming convention.
+    </p>
+    <p>
+      Math.PI // The ratio of the circumference and diameter of a circle<br />
+      << 3.141592653589793<br />
+      Math.SQRT2 // The square root of 2<br />
+      << 1.4142135623730951<br />
+      Math.SQRT1_2 // The reciprocal of the square root of 2<br />
+      << 0.7071067811865476<br />
+      Math.E // Euler's constant<br />
+      << 2.718281828459045<br />
+      Math.LN2 // The natural logarithm of 2<br />
+      << 0.6931471805599453<br />
+      Math.LN10 // The natural logarithm of 10<br />
+      << 2.302585092994046<br />
+      Math.LOG2E // Log base 2 of Euler's constant<br />
+      << 1.4426950408889634<br />
+      Math.LOG10E // Log base 10 of Euler's constant<br />
+      << 0.434294481903251
+    </p>
+    <hr />
+    <h2>Absolute Values</h2>
+    <p>
+      The Maths.abs() method returns the absolute value of a number. So if the
+      number is positive, it will remain the same, and if it’s negative, it will
+      become positive.
+    </p>
+    <p>
+      Math.abs(3);<br />
+      << 3<br />
+      Math.abs(-4.6);<br />
+      << 4.6
+    </p>
+    <h2>Rounding Methods</h2>
+    <p>
+      <strong>Math.ceil() </strong>method will round a number up to the next
+      integer, or remain the same if it is already an integer. <br />
+
+      Math.ceil(4.2);<br />
+      << 5<br />
+      Math.ceil(8);<br />
+      << 8<br />
+      Math.ceil(-4.2);
+    </p>
+    <p>
+      <strong>Math.floor()</strong> method will round a number down to the next
+      integer, or remain the same if it is already an integer.
+      Math.floor(4.2);<br />
+      << 4<br />
+      Math.floor(8);<br />
+      << 8<br />
+      Math.floor(-4.2);<br />
+      << -5
+    </p>
+    <p>
+      <strong>Math.round()</strong>method will round a number to the nearest
+      integer. Math.round(4.5);<br />
+      << 5<br />
+      Math.round(4.499);<br />
+      << 4<br />
+      Math.round(-4.2);<br />
+      << -4
+    </p>
+    <p>
+      <strong>Math.trunc()</strong>method that returns the integer part of a
+      number. Math.trunc(4.9);<br />
+      << 4<br />
+      Math.trunc(-4.2);<br />
+      << -4
+    </p>
+    <p>
+      <strong>Math.random()</strong>method is used to create random numbers,
+      whch an be very useful when writing programs. Calling the method will
+      generate a number between 0 and 1. Math.random();<br />
+      << 0.7881970851344265<br />
+      If we want to generate a random integer, we can use the floor method that
+      removes the decimal part of the value. This will generate a random integer
+      between 0 and 5 <br />
+
+      Math.floor(6 * Math.random());<br />
+      << 4
+    </p>
+    <hr />
+    <h2>Constructor Function</h2>
+    <p>
+      A constructor function is used to create a new date object the new
+      operator <br />
+      const today = new Date(); The variable today points to Date object. To see
+      the date we use. toString() method <br /><br />
+
+      today.toString();<br />
+      << 'Tue Feb 14 2017 16:35:18 GMT+0000 (GMT)'
+    </p>
+    <h2>The REGEXP Object</h2>
+    <p>
+      A regular expression is a patternthat can be used to search string for
+      matches to the pattern.<br /><br />
+
+      const pattern = new RegExp('[a-zA-Z]+ing');<br />
+
+      pattern.test('joke');<br />
+      << false<br />
+      pattern.test('joking');<br />
+      << true<br />
+      pattern.test('jokingly');<br />
+      << false
+    </p>
+    <hr />
+    <h2>Document Object Model</h2>
+    <p>
+      It allows to access elements of a webpage and enable interaction with the
+      page by adding and removing elements, changing the order, content and
+      attributes of elements, and even altering how they are styled. We can
+      Target the document by using ID, class, tagname, query and so on. The
+      classlist property is a list of all the classes an element has. The add
+      method can be used to add a class to an element without overwriting any
+      classes that already exist.<br /><br />
+
+      wonderWoman.classList.add('warrior'); <br />
+      <br />
+
+      The toggle method is a useful method that will add a class if an element
+      doesn’t have it already, and remove the class if it does have it. It
+      returns true if the class was added and flase if it was removed. For
+      Example; <br /><br />wonderWoman.classList.toggle('hero'); // will remove
+      the 'hero'<br />
+      class<br />
+      << false<br />
+      wonderWoman.classList.toggle('sport'); // will add the 'hero' class
+      back<br />
+      << true <br /><br />
+
+      The contains method will check to see if an element has a particular
+      classs<br /><br />
+
+      wonderWoman.classList.contains('hero');<br />
+      << true<br />
+      wonderWoman.classList.contains('villain');<br />
+      << false
+    </p>
+    <hr />
+    <h2>Creating Text Node</h2>
+    <p>
+      A text node can be created using the document.createTextNode() method. It
+      takes a parameter which is a string containing the text that goes in the
+      node. <br /><br />
+
+      const flashText = document.createTextNode('Flash');
+    </p>
+    <h2>Co-ordinates of an Event</h2>
+    <p>
+      Screen X and ScreenY = shows the numer of pixels from the left and top of
+      the screen respectively where the event took place.<br /><br />
+      clientX and clientY = shows the number of pixels from the left and top of
+      the client that is being used (browser)<br /><br />
+      pageX and pageY = shows the number of pixels from the left and top, where
+      the event took place in the document. This property takes account of
+      whether the page has been scrolled.<br /><br />
+      function doSomething(event){<br />
+      console.log(`screen: (${event.screenX},${event.screenY}), page:
+      (${event.pageX},${event.pageY}), client:
+      (${event.screenX},${event.screenY})`) }
+    </p>
+    <hr />
+    <h2>Event Propagation</h2>
+    <p>
+      When click on an element, we are acutaly clicking on all the elements it’s
+      nested inside of. <br /><br />
+      <ul id='list'>
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+    </ul>
+    If one cliks on one of the li element, you are aalso clicking on the <UL> <BODY> and <HTML>elements. An event is said to propagate as it moves from one element to another. <br><br>
+
+        <strong>BUBBLING AND CAPTURING. (Two forms of Propagation) </strong><br>
+        
+        <strong>Bubbling </strong>– is when the event fires on the element clicked on first, then bubbles up the document tree, firing an event on each parent element until it reaches the root node. <br>
+        
+        <strong>Capturing </strong>– starts by firing an event on the root element, then propagates downwards, firing an event on each child element until it reaches the target element that was clicked on. 
+        
+        The addEventListener() method has a third parameter, which is a Boolean value that specifies whether capturing should be used or not and it defaults to false, which is why bubbling happens by default. 
+        
+        We can stop this behavior by using stopPropagation() method. 
+        
+    </p>
+  </body>
+</html>
