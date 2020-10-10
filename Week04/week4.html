@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week4 Notes</title>
+    <style>
+      h1,
+      h2 {
+        text-align: center;
+      }
+      hr {
+        width: 70%;
+        margin-top: 2em;
+        border: none;
+        background-color: lightgray;
+        height: 1px;
+      }
+      p {
+        margin-left: 1em;
+      }
+      span {
+        color: rgb(62, 158, 221);
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Week 04 Notes</h1>
+    <h2>Object-Oriented Programming(OOP) in JavaScript</h2>
+    <hr />
+    <p>
+      It simply means separating the code into objects that have properties and
+      methods. The objects can be reused or easily modified, as required. The
+      three pillars of OOP's are: Encapsulation, Polymorphism, and Inheritance.
+    </p>
+    <p>
+      <strong>Encapsulation:</strong> The inner workings that are kept hidden
+      inside the object and only the essential functionalities are exposed to
+      the user. For example, in our IDE we print to the console and it prints
+      the result to us, we don't know what is happening behind the hood.
+    </p>
+    <p>
+      <strong>Polymorphism:</strong> The same process that can be used for
+      different objects. Objects can share the same method, but also have the
+      ability to override shared methods with a more specific implementation.
+    </p>
+    <p>
+      <strong>Inheritance: </strong> We can taje an object that already exists
+      and inherit all its properties and methods. Then we can improve on its
+      functionality by adding new properties and methods
+    </p>
+    <p>
+      JavaScript contains a number of built-in constructor such as Object, Array
+      and Function
+    </p>
+    <hr />
+    <h2>ES6 Class Declaration</h2>
+    <p>
+      class Dice {<br />
+      constructor(sides=6) {<br />
+      this.sides = sides;<br />
+      }<br />
+      roll() {<br />
+      return Math.floor(this.sides * Math.random() + 1)<br />
+      }<br />
+      }<br />
+    </p>
+    <hr />
+    <p>
+      <strong>Static Method: </strong>The stati keyword can be used in class
+      declartion to create a static method.
+    </p>
+    <p>
+      class Dice { <br />
+      constructor(sides=6) {<br />
+      this.sides = sides;<br />
+      } <br />
+      roll() { <br />
+      return Math.floor(this.sides * Math.random() + 1) <br />
+      } <br />
+      static description() { <br />
+      return 'A way of choosing random numbers' <br />
+      } <br />
+      }
+    </p>
+    <hr />
+    <h2>Prototypal Inheritance</h2>
+    <p>
+      - JavaScript uses a prototypal inheritance model which means that every
+      class has a prototype property that is shared by every instance of the
+      class. So any properties or methods of a class prototype can be accessed
+      by every object instantiated by that class.
+    </p>
+    <p>
+      <span>class </span>Turtle { <br />
+      constructor(name) { <br />
+      this.name = name; <br />
+      this.weapon = 'hands'; <br />
+      } <br />
+      sayHi() { <br />
+      return `Hi dude, my name is ${this.name}`; <br />
+      } attack(){ <br />
+      return `Feel the power of my ${this.weapon}!`; } <br />
+      } <br />
+      <br />
+      const leo = new Turtle('Leonardo'); <br />
+      << Turtle { name: 'Leonardo' } br
+    </p>
+    <p>
+      <strong>Prtotpye Property: </strong> It help us to add methods and
+      properties to the class even if we don't have access to the class
+      declartion
+    </p>
+    <p>
+      Turtle.prototype.weapon = 'Hands'; <br />
+      << 'Hands' <br />
+      <br />
+      The prototype can be used to add any new properties and methods after the
+      class has been declared
+    </p>
+    <hr />
+    <h2>Publice and Private Methods</h2>
+    <p>
+      By default, an objects methods are public in JavaScript. In the example
+      below Turtle Class has been modified to include a private color property
+    </p>
+    <p>
+      class Turtle { <br />
+      constructor(name,color) { <br />
+      this.name = name; <br />
+      let _color = color; <br />
+      this.setColor = color => { return _color = color; } <br />
+      this.getColor = () => _color;<br />
+      } <br />
+      }
+    </p>
+    <p>
+      <strong>Enumerable Properties: </strong> Properites of objects in
+      JavaScript are said to be enumerable or non-enumerable. If they are not
+      that means they will not show up when for-in loops is used to loop through
+      an objects properties and methods.
+    </p>
+    <p>
+      <strong>Inheritance Using Extends: </strong>A class can inherit from
+      another class using extends keyword in a class declaration.
+    </p>
+    <p>
+      class Turtle { <br />
+      constructor(name) { <br />
+      this.name = name; <br />
+      } <br />
+      sayHi() { <br />
+      return `Hi dude, my name is ${this.name}`; <br />
+      } <br />
+      swim() { <br />
+      return `${this.name} paddles in the water`; <br />
+      } <br />
+      } <br />
+      <br />
+      <br />
+
+      class NinjaTurtle extends Turtle { <br />
+      constructor(name) { <br />
+      super(name); <br />
+      this.weapon = 'hands'; <br />
+      } <br />
+      attack() { return `Feel the power of my ${this.weapon}!` } <br />
+      } <br />
+      <br />
+      Super refers to the parent class, and can be used to access any properties
+      and call any methods of the parent class.
+    </p>
+    <p>
+      <strong>Polymorphism: </strong> The concept of polymorphism means that
+      different object can have the same method, but implement in different
+      ways.
+    </p>
+    <hr />
+    <h2>Forms</h2>
+    <p>
+      Forms are made up of a element that contains form controls such as input
+      fields, select menus and buttons. These fields can be populated with the
+      information that is processed once the form has been submitted. <br />
+      Document.Forms returns an HTML collectin of all the forms in the document
+      in the ordery they appear in the markup.
+      <br /><br />
+      const form = document.forms[0];
+    </p>
+    <p>
+      A form object also has a method called elements that returns an HTML
+      collection of all the elements contained in the form. <br />
+      const [input,button] = form.elements; <br />
+      <br />
+      The most important form event is the submit event, occurring when the form
+      is submitted. Usually, this will send the content of the form to the
+      server to be processed.
+    </p>
+    <p>
+      <strong>Form Validation: </strong>A process of checking whether a user has
+      entered the information into a form correctly. Example: A required field,
+      an email address is valid, a number is entered, password is at least a
+      minimum number of characters. <br /><br />
+      form.addEventListener('submit',validate,false);<br />
+      function validate(event) { <br />
+      const firstLetter = form.heroName.value[0]; <br />
+      if (firstLetter.toUpperCase() === 'X') { <br />
+      event.preventDefault(); <br />
+      alert('Your name is not allowed to start with X!'); <br />
+      } <br />
+      }
+    </p>
+  </body>
+</html>
