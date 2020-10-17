@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <style>
+      .board {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
+        justify-content: center;
+        margin-top: 5em;
+      }
+      .board-item {
+        border: 1px solid #333;
+        text-align: center;
+        font-size: 5em;
+      }
+      .board-item:nth-child(3n) {
+        border-right: 0;
+      }
+      .board-item:nth-child(1n) {
+        border-left: 0;
+        border-top: 0;
+      }
+      .board-item:nth-child(n + 7) {
+        border-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="board">
+      <div class="board-item top-left"></div>
+      <div class="board-item top-middle"></div>
+      <div class="board-item top-right"></div>
+      <div class="board-item middle-left"></div>
+      <div class="board-item middle-middle"></div>
+      <div class="board-item middle-right"></div>
+      <div class="board-item bottom-left"></div>
+      <div class="board-item bottom-middle"></div>
+      <div class="board-item bottom-right"></div>
+    </div>
+    <button id="reset">Reset</button>
+    <script>
+      const board = document.querySelector(".board");
+      const board_item = document.querySelectorAll(".board-item");
+      const resetMe = document.getElementById("reset");
+
+      const player1 = "X";
+      const player2 = "O";
+      let player = player1;
+
+      function drawGame(e) {
+        e.target.innerHTML = player;
+        if (player === player1) {
+          player = player2;
+        } else {
+          player = player1;
+        }
+      }
+      function resetGame() {
+        for (const box of board.children) {
+          box.innerHTML = "";
+        }
+      }
+
+      function checkGame() {
+        const topLeft = board_item[0].classList[2];
+        const topMiddle = board_item[1].classList[2];
+        const topRight = board_item[2].classList[2];
+        const middleLeft = board_item[3].classList[2];
+        const middleMiddle = board_item[4].classList[2];
+        const middleRight = board_item[5].classList[2];
+        const bottomLeft = board_item[6].classList[2];
+        const bottomMiddle = board_item[7].classList[2];
+        const bottomRight = board_item[8].classList[2];
+
+        console.log(topLeft, topMiddle, topRight);
+        console.log(middleLeft, middleMiddle, middleRight);
+        console.log(bottomLeft, bottomMiddle, bottomRight);
+      }
+
+      const handleCellClick = (e) => {
+        const position = e.target.classList[1];
+        console.log("position", position);
+        checkGame();
+      };
+
+      board.addEventListener("click", drawGame);
+      resetMe.addEventListener("click", resetGame);
+
+      for (const item of board_item) {
+        item.addEventListener("click", handleCellClick);
+      }
+    </script>
+  </body>
+</html>

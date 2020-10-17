@@ -4,14 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To Do App</title>
-    <script src="./app.js" type="module"></script>
+    <script src="./todo.js" type="module"></script>
+    <link rel="stylesheet" href="./todo.css" />
+
+    <script
+      src="https://kit.fontawesome.com/8570420209.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <h1>To Do</h1>
-    <header>
-      <input type="text" id="input" />
-      <button id="addTodo">Add</button>
-    </header>
-    <div class="result"></div>
+    <div class="container">
+      <h1>To Do</h1>
+
+      <div class="content">
+        <ul id="todo-list">
+          <div id="placeholder">
+            <p><i class="fas fa-list-ul"></i>Todos Appear Here</p>
+          </div>
+          <!-- <li class="item">
+            <i class="far fa-circle" complete></i>
+            <p class="text">Code Todo</p>
+            <i class="fas fa-trash"></i> 
+          </li>  -->
+        </ul>
+      </div>
+      <div class="add-todo">
+        <form id="form">
+          <input type="text" id="text-input" placeholder="Add a New To-do" />
+          <button id="add" type="submit">Add</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

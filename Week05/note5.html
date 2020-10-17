@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 05 Notes</title>
+    <style>
+        h1,
+        h2 {
+          text-align: center;
+        }
+        hr {
+          width: 70%;
+          margin-top: 2em;
+          border: none;
+          background-color: lightgray;
+          height: 1px;
+        }
+        p {
+          margin-left: 1em;
+        }
+        span {
+          color: rgb(62, 158, 221);
+          text-transform: uppercase;
+        }
+      </style>
+  </head>
+  <body>
+    <h1>Week 05 Notes: Testing and Debugging</h1>
+
+    <p> <strong>Exceptions</strong>
+      - An exception is an error that produces a return value that can be used
+      by the program to deal with the error. For example, when we try to call a
+      method that is nonexistent will result in a reference error.
+      <pre>
+        unicorn();
+        << ReferenceError: unicorn is not defined
+        
+      </pre>
+    </p>
+    <p><strong>Stack Traces</strong>
+     An exception will also produce a stack Trace. It is a sequence of functions or
+      method calls that lead to the point where the error occurred. It works backwards
+       from the point at which the error occurred to identify the original function or 
+       method that started the sequence. 
+       <pre>
+        function three(){ unicorn(); }
+        function two(){ three(); }
+        function one(){ two(); }
+        one();
+        << index.html:13 Uncaught ReferenceError: unicorn is not defined
+            at three (index.html:13)
+            at two (index.html:17)
+            at one (index.html:21)
+            at index.html:24`
+        
+       </pre>
+    </p> <hr>
+    <p><strong>Warnings:</strong>
+        A warning occur if there’s an error in the code that isn’t enough to cause the program to crash. The program will run even after a warning. 
+    <pre>
+        pi = 3.142;
+        << JavaScript Warning: assignment to undeclared variable
+    </pre>
+    </p>
+    <hr>
+    <p><strong>Strict Mode: </strong>
+        ECMASCRIPT 5 introduced a strict mode that produces more exceptions and warning and prohibits the use of some deprecated features.  Not using strict mode is often reffered to as ‘sloppy mode’ as its forgiving of sloppy programming practices. 
+    <pre>
+        'use strict';
+
+        'use strict';
+        e = 2.718;
+        << ReferenceError: e is not defined
+
+    </pre>
+    </p>
+    <hr>
+    <p><strong>Linting Tools: </strong>
+        Linting tools such as JS Lint, JS Hint, ES Lint  can be used to test the quality of JavaScript code.
+         They are designed to highlight sloppy programing practices. 
+    </p>
+    <hr>
+    <p><strong>The Trusty Alert: </strong>
+        The most basic form of debugging is to use the alert() method to show a dialog at certain points in the code. 
+        Alert stops a program from running until ok is clicked, it allows to put us breakpoints
+         in the code and let us check the value of variable. 
+         <pre>
+            function amIOldEnough(age){
+                if (age = 12) {
+                    alert(age);
+                    return 'No, sorry.';
+                } else if (age < 18) {
+                    return 'Only if you are accompanied by an adult.';
+                }
+                else {
+                    return 'Yep, come on in!';
+                }
+            }            
+         </pre>
+    </p>
+<hr>
+    <p>
+        <strong>Using the Console:</strong>
+        JavaScript environments have a console object that provides a number of methods for logging information and debugging. 
+        <pre>
+            function amIOldEnough(age){
+                console.log(age);
+                    if (age < 12) {
+                    console.log(`In the if with ${age}`);
+                    return 'No, sorry.';
+                    } else if (age < 18) {
+                    console.log(`In the else-if with ${age}`);
+                    return 'Only if you are accompanied by an adult.';
+                    } else {
+                    console.log(`In the else with ${age}`);
+                    return 'Yep, come on in!';
+                }
+            }            
+            The <strong>console.trace() </strong>method will log an interactive stack trace in the console.
+        </pre>
+    </p>
+    <hr>
+    <p><strong> Debugging Tools:</strong>
+        Most of the browsers have a debugging tool that allows to set breakpoints in the code that will pause it at certain points. 
+    </p>
+    <hr>
+    <p><strong>Error Objects: </strong>
+        An Error Object can be created by the host environment when an exception occurs, or it can be created in the code using a constructor function like 
+    <pre>
+        const error = new Error();
+    </pre>
+    The construction function takes a parameter that's used as the error message. 
+    <pre>
+        const error = new Error('Oops, something went wrong');
+    </pre>
+    </p>
+    <hr>
+    <p><strong>Throwing Exceptions: </strong>
+        Errors are thrown automatically by the JavaScript engine when an error occurs. It is also possible to throw our own exceptions using the throw statement. This will allow for any problems in the code to be highlighted and deal with it. 
+    
+    <pre>
+        The statement can be used to stop the program like:
+        throw 2;
+        throw 'Up';
+        throw { toys: 'out of pram' };
+
+    </pre>
+    </p>
+    <hr>
+    <p><strong>Exception Handling: </strong>
+        If we suspect a piece of code will result in an exception, we can wrap in an exception, we can wrap it in a try block. This will run the code inside the block as normal, but if an exception occurs it will pass the error object that is thrown onto a catch block. 
+
+        <pre>
+            function imaginarySquareRoot(number) {
+                'use strict';
+                try {
+                    return String(squareRoot(number));
+                } catch(error) {
+                    return squareRoot(-number)+'i';
+                }
+            }
+            
+        </pre>
+        
+    </p>
+    <hr>
+    <p><strong>JEST:</strong>
+        Jest is a TDD framework, created by Facebook, which makes easy to create and run tests by providing helped methods for common test assertions. 
+    <pre>
+        To use jest, firsst we need to install it using npm
+        npm install -g jest
+    </pre>
+    
+    </p>
+  </body>
+</html>

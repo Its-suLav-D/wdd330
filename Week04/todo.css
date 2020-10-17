@@ -1,0 +1,122 @@
+body {
+  background-color: #f1f2f5;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  padding: 10px;
+  width: 380px;
+  margin: 0 auto;
+}
+
+.content {
+  width: 380px;
+  height: 350px;
+  max-height: 350px;
+  background-color: #fff;
+  overflow: auto;
+}
+.content ul {
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  width: 380px;
+  height: 45px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text {
+  flex-grow: 4;
+  margin-left: 0.4em;
+}
+.item i.co {
+  margin-left: 1em;
+}
+.item i.de {
+  margin-right: 1em;
+}
+/* .item i.co {
+  position: absolute;
+  font-size: 25px;
+  padding-left: 5px;
+  left: 15px;
+  top: 10px;
+}
+.item i.co:hover {
+  cursor: pointer;
+}
+.fa-check-circle {
+  color: #6eb200;
+}
+.item p.text {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  left: 50px;
+  top: 5px;
+  background-color: #fff;
+  max-width: 285px;
+} */
+.lineThrough {
+  text-decoration: line-through;
+  color: #ccc;
+}
+/* .item i.de {
+  position: absolute;
+  font-size: 25px;
+  right: 15px;
+  top: 10px;
+}
+.item i.de:hover {
+  color: #af0000;
+  cursor: pointer;
+} */
+
+.add-todo {
+  position: relative;
+  width: 360px;
+  height: 40px;
+  background-color: #fff;
+  padding: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.add-todo input {
+  position: absolute;
+  left: 50px;
+  height: 35px;
+  width: 310px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  padding-left: 10px;
+}
+
+.add-todo input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #4162f6;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 20px;
+}
+#form {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#placeholder {
+  margin-top: 15vh !important;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
