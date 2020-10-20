@@ -15,23 +15,24 @@
   <body>
     <div class="container">
       <h1>To Do</h1>
+      <div id="filter-todo">
+        <button value="all" class="btn btn-info active">All</button>
+        <button value="completed" class="btn btn-info">Completed</button>
+        <button value="uncompleted" class="btn btn-info">Uncompleted</button>
+        <p id="remaning"></p>
+      </div>
 
       <div class="content">
         <ul id="todo-list">
           <div id="placeholder">
             <p><i class="fas fa-list-ul"></i>Todos Appear Here</p>
           </div>
-          <!-- <li class="item">
-            <i class="far fa-circle" complete></i>
-            <p class="text">Code Todo</p>
-            <i class="fas fa-trash"></i> 
-          </li>  -->
         </ul>
       </div>
       <div class="add-todo">
         <form id="form">
-          <input type="text" id="text-input" placeholder="Add a New To-do" />
           <button id="add" type="submit">Add</button>
+          <input type="text" id="text-input" placeholder="Add a New To-do" />
         </form>
       </div>
     </div>

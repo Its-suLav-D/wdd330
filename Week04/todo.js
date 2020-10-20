@@ -1,31 +1,6 @@
-// import { qs, setToLS } from "./utilities";
-
-// const todos = [];
-
-// function saveTodos(key) {
-//   setToLS(key, todos);
-// }
-// class Todo {
-//   constructor(parentId, key) {
-//     this.listElement = qs(parentId);
-//     this.key = key;
-//   }
-//   addTodo(text) {
-//     const newTodo = {
-//       id: new Date(),
-//       text: text,
-//       completed: false,
-//     };
-//     todos.push(newTodo);
-//     saveTodos(this.key);
-//   }
-// }
-
-// const todo = new Todo("#todoList");
-
 class Todo {
   constructor() {
-    this.todos = [];
+    this.todos = JSON.parse(localStorage.getItem("todo")) || [];
 
     this.$trash = document.querySelector("#trash");
     this.$placeholder = document.querySelector("#placeholder");
@@ -35,10 +10,12 @@ class Todo {
     this.$text = document.querySelector("#text-input"); // Input Field
     this.$incomplete = document.querySelector(".far fa-circle");
     this.$unCheck = document.querySelector("#trash");
-    // this.$check = "fas fa-check-circle";
-    // this.$lineThrough = "lineThrough";
+    this.$filter_list = document.querySelector("#filter-todo");
+    this.$filter_button = document.querySelectorAll(".btn");
+    this.$remaning = document.querySelector("#remaning");
 
     this.addEventListeners();
+    this.render();
   }
   addEventListeners() {
     this.$form.addEventListener("submit", (event) => {
@@ -51,8 +28,30 @@ class Todo {
       }
     });
 
-    this.$todo_list.addEventListener("click", this.completeTodo);
-    this.$todo_list.addEventListener("click", this.deleteNote);
+    document.body.addEventListener("click", (event) => {
+      this.deleteTodo(event);
+      this.completeTodo(event);
+      this.filterTodo(event);
+      this.changeActive(event);
+    });
+  }
+  displayCount() {
+    let counter = 0;
+    this.todos.forEach((todo) => {
+      if (todo.completed == false) {
+        counter += 1;
+        this.$remaning.innerHTML = `${counter} Task Left`;
+      }
+    });
+  }
+
+  changeActive(event) {
+    this.$filter_button.forEach((item) => {
+      item.addEventListener("click", () => {
+        this.$filter_list.querySelector(".active").classList.remove("active");
+        item.classList.add("active");
+      });
+    });
   }
 
   resetinput() {
@@ -66,45 +65,72 @@ class Todo {
     };
     this.todos = [...this.todos, newTodo];
     console.log(this.todos);
-    this.displayTodo();
+    this.render();
     this.resetinput();
   }
   render() {
     this.saveTodos();
-    this.displayTodo();
+    this.displayTodo(this.todos);
+    this.displayCount();
   }
   saveTodos() {
     localStorage.setItem("todo", JSON.stringify(this.todos));
   }
   completeTodo(event) {
-    const item = event.target;
-    if (item.classList[1] === "fa-circle") {
-      console.log("Yes I am circle");
-      const todo = item.parentElement;
-      todo.classList.toggle("lineThrough");
-    }
-    console.log(item);
-  }
-  deleteNote(event) {
-    // const item = event.target;
-    // const id = event.target.dataset.id;
-    // console.log(id);
-    // if (item.classList[1] === "fa-trash") {
-    //   this.todos.forEach((item) => {
-    //     console.log(`${item.text} deleted`);
-    //   });
-    // }
+    if (!event.target.matches(".fa-circle")) return;
+    const id = event.target.dataset.id;
+    this.todos.forEach((todo) => {
+      if (todo.id === Number(id)) {
+        if (todo.completed == true) {
+          todo.completed = false;
+        } else {
+          todo.completed = true;
+        }
+      }
+    });
+    this.render();
   }
 
-  displayTodo() {
-    const hasTodos = this.todos.length > 0;
+  deleteTodo(event) {
+    if (!event.target.matches(".fa-trash")) return;
+    const id = event.target.dataset.id;
+    this.todos = this.todos.filter((todo) => todo.id !== Number(id));
+    this.render();
+  }
+
+  filterTodo(event) {
+    if (!event.target.value) return;
+    let displayFilter = [];
+    this.todos.forEach((todo) => {
+      switch (event.target.value) {
+        case "all":
+          displayFilter = this.todos;
+          break;
+        case "completed":
+          if (todo.completed == true) {
+            displayFilter.push(todo);
+          }
+          break;
+        case "uncompleted":
+          if (todo.completed == false) {
+            displayFilter.push(todo);
+          }
+      }
+    });
+    this.displayTodo(displayFilter);
+  }
+
+  displayTodo(todolist) {
+    const hasTodos = todolist.length > 0;
     this.$placeholder.style.display = hasTodos ? "none" : "block";
 
-    this.$todo_list.innerHTML = this.todos
+    this.$todo_list.innerHTML = todolist
       .map(
         (todo) => ` 
-      <li class="item"> 
-        <i class="far fa-circle co" complete></i>
+      <li class="item ${todo.completed ? "lineThrough" : ""}" data-id=${
+          todo.id
+        }> 
+        <i class="far fa-circle co" data-id=${todo.id}  ></i>
           <p class="text">${todo.text}</p>
         <i class="fas fa-trash de" id="trash" data-id=${todo.id}></i>
       </li>
@@ -114,5 +140,3 @@ class Todo {
   }
 }
 new Todo();
-
-// fas fa-check-circle
