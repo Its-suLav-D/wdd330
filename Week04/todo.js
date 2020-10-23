@@ -122,6 +122,7 @@ class Todo {
 
   displayTodo(todolist) {
     const hasTodos = todolist.length > 0;
+
     this.$placeholder.style.display = hasTodos ? "none" : "block";
 
     this.$todo_list.innerHTML = todolist
