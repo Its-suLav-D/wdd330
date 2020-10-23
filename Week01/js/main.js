@@ -11,6 +11,14 @@ const links = [
     label: "Week 3 Activities",
     url: "https://its-sulav-d.github.io/wdd330/Week03/dashboard.html",
   },
+  {
+    label: "Week 4 Activities",
+    url: "https://its-sulav-d.github.io/wdd330/Week04/w04dashboard.html",
+  },
+  {
+    label: "Week 5 Activities",
+    url: "https://its-sulav-d.github.io/wdd330/Week05/wo5dashboard.html",
+  },
 ];
 
 links.forEach((link) => {
