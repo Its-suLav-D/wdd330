@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week07 Notes</title>
+    <style>
+      h1,
+      h2 {
+        text-align: center;
+      }
+      hr {
+        width: 70%;
+        margin-top: 2em;
+        border: none;
+        background-color: lightgray;
+        height: 1px;
+      }
+      p {
+        margin-left: 1em;
+      }
+      span {
+        color: rgb(62, 158, 221);
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Week 07 Notes: Further Functions and Ajax</h1>
+    <p>
+      Functions are first-class objects, which means they can be passed around
+      in the same way as every other value. They can have their own properties
+      and methods, as well as other functions as parameters.
+    </p>
+    <hr>
+    <p><strong>Call and Apply Methods</strong>
+        The call() method can be used to set value of this inside a function to an object that is provided as the first argument. 
+        <pre>
+            function sayHello(){
+                return `Hello, my name is ${ this.name }`;
+            }
+            
+        </pre>
+    </p>
+
+    <p>We can create some objects that have a nae property, the use the call() method to invoke the sayHello() function
+        <pre>
+            const clark = { name: 'Clark' };
+            const bruce = { name: 'Bruce' };
+            sayHello.call(clark);
+            << 'Hello, my name is Clarke'
+            sayHello.call(bruce);
+            << 'Hello, my name is Bruce'
+        </pre>
+    </p>
+    <hr>
+    <p><strong>Memoization:</strong> A useful feature of this is that it provides result caching, or memorization. If a function takes some time to compute a return value, we can save the result in a cache property. Then if the same argument is used again later, we can return the value from the cache, rather than having to compute the result again. 
+    
+    <pre>
+        function square(x){
+            square.cache = square.cache || {};
+            if (!square.cache[x]) {
+                square.cache[x] = x*x;
+            }
+            return square.cache[x]
+        }
+        square(3);
+        << 9
+        square(-11);
+        << 121
+        square.cache;
+        << {"3": 9, "-11": 121}
+    </pre>
+    </p>
+    <hr>
+    <p><strong>Immediately Invoked Function Expressions: </strong>
+        An Immediately Invoked Function Expression – or IIFE is an anonymous function which is invoked as soon as it’s defined. It can be achieved by placing parentheses at the end of the function definition. 
+        <pre>
+            (function(){
+                const temp = 'World';
+                console.log(`Hello ${temp}`);
+                })();
+                << 'Hello World'
+                
+        </pre>
+        It is a useful way of performing a task while keeping any variables wrapped up withing the scope of the function. 
+    </p><hr>
+    <p><strong>Function that Define and Rewrite Themselves: </strong>
+        The function is able to not only call itself, but define itself, and even redefine itself. It can be done by assigning an anonymous function to a variable that has the same name as the function 
+        <pre>
+            function party(){
+                console.log('Wow this is amazing!');
+                party = function(){
+                    console.log('Been there, got the T-Shirt');
+                }
+            }
+
+            const beachParty = party; // note that the party function has not been invoked
+            beachParty(); // the party() function has now been redefined, even though it hasn't been called explicitly
+            << 'Wow this is amazing!'
+            party(); 
+            << 'Been there, got the T-Shirt'
+            beachParty(); // but this function hasn't been redefined
+            << 'Wow this is amazing!'
+            beachParty(); // no matter how many times this is called it will remain the same
+            << 'Wow this is amazing!'
+
+        </pre>
+    </p>
+    <hr>
+    <p><strong>Init-Time Branching:</strong> 
+        This technique can be used with the feature detection to create functions that rewrite themselves, known as init-time branching. This enables the functions to work more effectively in the browser, and avoid checking for features every time they’re invoked. 
+        <pre>
+            function ride(){
+                if (window.unicorn) { 
+                    ride = function(){
+                    // some code that uses the brand new and sparkly unicorn methods
+                    return 'Riding on a unicorn is the best!';
+                    }
+                } else {
+                    ride = function(){
+                    // some code that uses the older pony methods
+                    return 'Riding on a pony is still pretty good';
+                    }
+                }
+                return ride();
+            }
+            
+        </pre>
+    </p>
+    <hr>
+    <p><strong>Recursive Functions:</strong>
+        A recursive function is one that invokes itself until a certain condition is met. It’s a useful too to use when iterative processes are involved. 
+        <pre>
+            function factorial(n) {
+                if (n === 0) {
+                    return 1;
+                } else {
+                    return n * factorial(n - 1);
+                }
+            }
+            
+        </pre>
+    </p>
+    <p><strong>Event Driven Asynchronous Programming:</strong>
+        Callbacks can use used to facilitate event-driven asynchronous programming. In JavaScript, only one piece of code will be processed at a time. We can use non-blocking techniques to ensure the continuous run of program. Instead of waiting for event to occur, a callback can be created that’s invoked when the event happens. 
+
+        The wait() accepts a callback. To simulate an operation that takes some time to happen, we can set the setTimeout() function to call the callback after a given number of seconds. 
+        <pre>
+            function wait(message, callback, seconds){
+                setTimeout(callback,seconds * 1000);
+                console.log(message);
+            }
+            
+            function selfDestruct(){
+                console.log('BOOOOM!');
+            }
+            
+
+        </pre>        
+    </p>
+    <hr>
+    <p><strong>Callback Hell: </strong> To increase the use of asynchronous programming in JavaScript means more callbacks are being used. Callback hell is the term used to refer mess of code. 
+
+    </p>
+    <hr>
+    <p><strong>Promises </strong>: A promise represents the future result of an asynchronous operation. Promises don’t do anything that can’t be achieved using callbacks, but they help simplify the process, and avoid the convolutated code that can result from using multiple callbacks. </p>
+    <p><strong>The Promise Life Cycle: </strong> 
+        When a promise is created, it is said to be pending. It remains in this state while the operation is taking place, at this stage promise is said to be unsettled. Once the operation has been completed, the promise is said to have been settled. There are two outcomes of settled promise:
+
+        <br>
+
+        <strong>Resolved: </strong> The asynchronous operation was completed successfully 
+        Rejected: The asynchronous operation didn’t work as expected, an  error was encountered.         
+    
+    </p>
+    <hr>
+    <p><strong>Creating a Promise: </strong>A promise is created using a constructor function. This takes function called an executer as an argument. It also accepts two functions as arguments: the resolve() function called if the operation was successful, and the reject() function called if the operation fails. 
+    
+        <pre>
+            const promise = new Promise( (resolve, reject) => {
+                // initialization code goes here
+                if (success) {
+                    resolve(value);
+                } else {
+                    reject(error);
+                }
+            });
+            
+            
+            const dice = {
+                sides: 6,
+                roll() {
+                    return Math.floor(this.sides * Math.random()) + 1;
+                }
+            }
+            
+            const promise = new Promise( (resolve,reject) => {
+                const n = dice.roll();
+                setTimeout(() => {
+                    (n > 1) ? resolve(n) : reject(n);
+                }, n*1000);
+            });
+            
+        </pre>
+    </p>
+    <hr>
+    <p><strong>Chaining Multiple Promises: </strong> Promises come into their own when multiple asynchronous tasks are required to be carried out one after the other. 
+    <pre>
+        login(userName)
+        .then(user => getPlayerInfo(user.id))
+        .then(info => loadGame(info))
+        .catch( throw error)
+
+    </pre>
+    </p>
+    <p><strong>Async Functions:</strong>
+        These function are preceded by the async keyword and allow to write asynchronous code as if it was synchronous. This is achieved by using the await operator before an asynchronous function. 
+        <pre>
+            async function loadGame(userName) {
+                try {
+                    const user = await login(userName);
+                    const info = await getPlayerInfo (user.id);
+                    // load the game using the returned info
+                }
+                catch (error){
+                    throw error;
+                }
+            }            
+        </pre>
+    </p>
+    <p><strong>Generator:</strong>These are special functions used to produce iterators that maintain the state of a value. To define a generator function, an * is placed after the function declaration
+    <pre>
+        function* exampleGenerator() {
+            // code for the generator goes here
+            }            
+    </pre>
+    </p>
+    <hr>
+    <p><strong>Functional Programming: </strong> Clojure, Scala and Erlang sparked an interest in functional programming techniques that continues to grow. Functional programming is a programming paradigm. Other example of programming paradigm include object oriented programming and procedural programming. </p>
+    <hr>
+    <p><strong>Higher-Order Functions: </strong> Higher-Order functions are functions that accept another function as an argument, or return another function as a result or both. Closures are used extensively in higher order functions as they allow us to create a generic function that can be use to then return more specific functions based on its argumets. 
+        <pre>
+        function multiplier(x){
+            return function(y){
+                return x*y;
+            }
+        }
+    </pre>
+        </p>
+    <p><strong>Ajax</strong>:Ajax is a technique that allows a web page to communicate asynchronously with a server, and It dynamically updates web pages without reloading.  </p>
+    <hr>
+    <p><strong>Fetch API: </strong>The fetch API uses promises to avoid callback hell, and also streamlines a number of concepts that had become when using the XMLHttpRequest Object 
+
+        The Fetch API provides a global fetch() method that only has one argument, which the URL of the resource one wants to fetch. 
+    <pre>
+        fetch('https://example.com/data')
+        .then( // code that handles the response )
+        .catch( // code that runs if the server returns an error )
+    </pre>    
+    
+    </p>
+    <hr>
+    <p><strong>Response Interface: </strong>The Fetch API introduced the Response interface that deals with the object’s that returned when the promise is fulfilled. Each response object has an ok property that checks to see if the response was successful. It is an example of HTTP status code, which can be accessed using the status property. 200 means response was successful, 201 if a resource was created, or 204 when the request is successful but no content is returned. The ok property will return true if the status property is between 200 and 299. 
+    <pre>
+        const url = 'https:example.com/data';
+        fetch(url)
+        .then((response) => {
+         if(response.ok) {
+        return response;
+    }
+    throw Error(response.statusText);
+})
+.then( response => // do something with response )
+.catch( error => console.log('There was an error!') )
+
+    </pre>
+    </p>
+    <p><strong>Redirect: </strong>The redirect() method can be used to redirect to another URL. It creates a new promise that resolves to the response from the redirected URL. 
+    <pre>
+        fetch(url)
+.then( response => response.redirect(newURL)); // redirects to another URL
+.then( // do something else )
+.catch( error => console.log('There was an error: ', error))
+
+    </pre>
+    </p>
+    <p><strong>Text Responses: </strong>The text() method takes a stream of text from the response. Reads it to completion and then returns a promise that resolves to a USVsting object that can be treated as a string in JavaScript. 
+    <pre>
+        fetch(url)
+    .then( response => response.text() ); // transforms the text stream into a JavaScript string
+    .then( text => console.log(text) )
+    .catch( error => console.log('There was an error: ', error))
+    </pre>
+    </p>
+    <p><strong>JSON responses: </strong>JSON is probably the most common format for AJAX responses. The json() method is used to deal with these by transforming a stream of JSON data into a promise that resolves to a JavaScript object. 
+    <pre>
+        fetch(url)
+    .then( response => response.json() ); // transforms the JSON data into a JavaScript object
+    .then( data => console.log(Object.entries(data)) )
+    catch( error => console.log('There was an error: ', error))
+
+    </pre>
+    </p>
+    <p><strong>Request</strong> A constructor function is used to create a new Request Object. 
+    <pre>
+        const request = new Request('https://example.com/data', {
+            method: 'GET',
+            mode: 'cors',
+            redirect: 'follow',
+            cache: 'no-cache'
+        });
+        
+    </pre>
+    </p>
+    <hr>
+    <p><strong>Headers Interface: </strong> 
+        HTTP headers are used to pass on any additional information about a request or response. Typical information contained in headers includes the file-type of the resource, cookie information, authentication information and when the resource was last modified. 
+
+        The Fetch API introduced a Headers interface, which can be used to create a Headers object, which can then be added as property of Request and Response objects. 
+        
+        A new Headers instance is created using a constructor function,
+        <pre>
+            const headers = new Headers();
+        </pre>
+        The constructor function can be provided with an optional argument containing any initial header values:
+        <pre>
+            const headers = new Headers({ 'Content-Type': 'text/plain', 'Accept-Charset' : 'utf-8', 'Accept-Encoding':'gzip,deflate' })
+        </pre>
+        <br>
+
+        A headers object includes the following properties and methods that can be used to access information about the headers 
+        <br>
+        Has() – can be used to check If the headers objects contain the header provided as an argument. 
+
+We can use the headers, request and response objects to put together a example that setups up the URL, Request and Headers before calling the fetch() method. 
+        <br>
+        <pre>
+            const url = 'https:example.com/data';
+    const headers = new Headers({ 'Content-Type': 'text/plain', 'Accept-Charset' : 'utf-8', 'Accept-Encoding':'gzip,deflate' })
+    const request = (url,{
+    headers: headers
+})
+fetch(request)
+.then( function(response) {
+    if(response.ok) {
+        return response;
+    }
+    throw Error(response.statusText);
+})
+.then( response => // do something with response )
+.catch( error => console.log('There was an error!') )
+
+
+
+        </pre>
+
+        
+    </p>
+</body>
+</html>
