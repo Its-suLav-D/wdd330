@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Wars API</title>
+    <link rel="stylesheet" href="./stars.css" />
+  </head>
+  <body>
+    <h1>SWAPI API</h1>
+    <div class="listbox">
+      <table id="shiplist">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Birth Year</th>
+            <th>Gender</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <div id="modal">
+      <div id="modal-content"></div>
+    </div>
+    <div class="buttons">
+      <button id="prev" class="btn pr">Prev</button>
+      <button id="next" class="btn nx">Next</button>
+    </div>
+  </body>
+  <script src="./stars.js"></script>
+</html>
