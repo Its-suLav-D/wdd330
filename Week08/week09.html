@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 9 Notes</title>
+    <style>
+      h1,
+      h2 {
+        text-align: center;
+      }
+      hr {
+        width: 70%;
+        margin-top: 2em;
+        border: none;
+        background-color: lightgray;
+        height: 1px;
+      }
+      p {
+        margin-left: 1em;
+      }
+      span {
+        color: rgb(62, 158, 221);
+        text-transform: uppercase;
+      }
+      .myCanvas, .myCanvas1, .myCanvas2{
+          border: dotted 2px black;
+          margin: 0 auto;
+          display: block;
+      }
+      circle {
+          border: 1px solid black;
+      }
+      .svg {
+          border: 1px solid black;
+          width: 100%;
+          height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      Week 08 Notes: Transforms and Transitions and Canvas, SVG, and Drag & Drop
+    </h1>
+    <p>
+      <strong>Transforms: </strong> The CSS3 transform property lets us
+      translate, rotate, scale, and skew any element on the page. We can
+      manipulate an element’s appearance using transform functions. The value of
+      transform property is one ore more transform functions that will be
+      applied in the order they’re provided.
+    </p>
+    <hr />
+    <p>
+      <strong>Translation: </strong>The function allows you to move elements
+      left, right, up or down. These functions are similar to the behavior of
+      position: relative, when declaring top and left, moving elements up and
+      down or left and right along the x and y axes. The translate(x,y) function
+      moves an element x from left and y from top.
+      <pre>
+        transform: translate(45px, -45px);
+      </pre>
+      If we want to move an element vertically or horizontally, we can use the translateX or translate function.  To move 45px to the right along the x axis, include 
+      <pre>
+        transform: translateX(45px, -45px);
+      </pre>
+      To move up along the y axis by 30px, include: 
+      <pre>
+        transform: translateY(-30px);
+      </pre>
+    </p>
+    <hr>
+    <p><strong>Scaling: </strong> The scale(x,y) function scales an element by the defined factors horizontally then vertically. If only one value is provided, it will be used for both the x and y values, growing or shrinking the element or pseudo element while maintaining the original aspect ratio. For example, Scale(1) will leave the element the same size, scale(2) would double its proportions, scale(0.5) would halve them. 
+    <pre>
+        transform: scale(1.5, 0.25);
+    </pre>
+    </p>
+    <hr>
+    <p><strong>Rotation: </strong>The rotate() function rotates an element around the point of origin by a specified angle value. As with scale, by default the point of origin is the element’s center.Angles are declared in degrees, with positive degrees moving clockwise and negative moving counterclockwise. In addition to degrees, values can be provided in grads, radians. </p>
+    <hr>
+    <p><strong>Skew: </strong> The skew(x,y) function specifies a skew along the x and y axes. The x Specifies the skew on the x-axis, and they y specifies the skew on the y axis. If the second parameter is omitted, the skew will only occur on the x-axis. 
+        <pre>
+            
+        transform: skew(15deg, 4deg);
+
+        </pre>
+    </p>
+    <hr>
+    <p><strong>Transitions: </strong>Transition allows the values of CSS properties to change over time, essentially providing simple animations. For example, if a link changes color on hover, we can have it gradually fade one color to the other color instead of a sudden change. We can animate any of the tranform’s to make our page feel more dynamic. 
+    <br>
+    Steps to create Transition using CSS 
+    <ul>
+    <li>Declare the original state of the element in the default style declaration.</li>
+    <li>Declare the final state of the transitional element ie. :hover state</li>
+    <li>Include the transitio-property, transition-duration, transition-timing-function, and transition-delay</li></ul>
+    The -webkit- vendor prefix is still needed for older mobile devices. 
+    </p>
+    <hr>
+
+    <p><strong>Transition-property</strong>It defines CSS properties of the element that should be transitioned, with all for all properties being the default. </p>
+    <hr>
+    <p><strong>The transition-duration Property: </strong>The transition-duration property sets how long the transition will take: the duration of time it takes to go from the default state to the transitioned state. We can specific this either in seconds(s) or milliseconds(ms). 
+    <pre>
+        transition-duration: 0.2s;
+    </pre>
+    200ms is generally considered the optimum time for transition:anything slower will make the site seem slow. 
+    </p>
+    <hr>
+    <p><strong>The transition-timing-function Property</strong> The transition-timing-function lets control the pace of the transition in more granular details. How do I want my animation to start off slow and become faster, start off fast and end slower, advance at an even keel, or some other variation 
+        The most common timing functions include the key term ease, linear, ease-in, ease-out or ease-in-out. The default ease has a slow start, then it speeds up and ends slowly. Ease-in-out is similar to ease, but accelerates more sharply at the beginning. Linear creates a transition animate at a constant speed. Ease-in creates a transition that is slow to start but gains speed, the strops abruptly.  The opposite ease-out, starts at full speed and then slows progressively. 
+       
+    <pre>
+        .ad-ad2 h1 span {
+            transition-property: transform; 
+            transition-duration: 0.2s;  
+            transition-timing-function: ease-out;
+            transition-delay: 50ms;
+        }
+        
+        .ad-ad2 h1 span {
+            transition: transform 0.2s ease-out 50ms;
+        }
+        
+    </pre>
+    </p>
+    <hr>
+    <p><strong>Multiple Transitions: </strong>The transition properties allow for multiples transitions in one call. For example if we want to change the color at the same time as changing the rotation and size, we can. 
+    <pre>
+        transition-property: transform, color; 
+        transition-duration: 0.2s;  
+        transition-timing-function: ease-out;
+        transition-delay: 50ms;
+        </pre>
+        When using the all keyword, all the properties transition at the same rate, speed and delay 
+        <pre>
+            transition: all 0.2s ease-out 50ms;
+        </pre>
+    </p>
+    <hr>
+    <p><strong>Animations: </strong>Transitions animate elements over time. A keyframe is a snapshot that defines a starting or end point of any smooth transition. With CSS transitions, we are limited to defining a first and last keyframe. </p>
+    <hr>
+    <p><strong>KeyFrames: </strong>To animate an element in CSS, we need to create a named animation, then attach it to an element in that elements property declaration block. To create an animation the @keyframes Is used. 
+    <pre>
+        @keyframes moveRight { 
+            from {
+            transform: translateX(-50%);
+            }
+            to {
+            transform: translateX(50%);
+            }
+        }
+        @keyframes appearDisappear { 
+            0%, 100% {
+            opacity: 0;
+            }
+            20%, 80% {
+            opacity: 1;
+            }
+        }
+        @keyframes bgMove {
+            100% {
+            background-position: 120% 0;
+            }
+        }
+        
+    </pre>
+    </p>
+    <hr>
+    <p><strong>Animation-timing-function: </strong>Like transition-timing-function, the animation-timing-function determines how the animation will progress over its duration. The options are the same as transition-timing-function: ease, linear, ease-in, ease-out, ease-in-out, a developder defined cubic-bezier() function, step-start, step-end, or a developer-defined number of steps with the steps(number, direction) function.  </p>
+    <hr>
+    <h1>Canvas, SVG, Drag and Drop</h1>
+    <p><strong>Canvas:</strong>With Canvas API, we can draw anything we can imagine, all through JavaScript. This can improve the performance of website by avoiding the need to download images off the network. With canvas we can draw shapes and lines, arc and text, gradients and patterns. 
+    <pre>
+        <canvas id="myCanvas" class="myCanvas">
+            Sorry! Your browser doesn’t support Canvas.
+        </canvas>
+    </pre>
+    </p>
+    <hr>
+    <p><strong>Getting the Context: </strong>After storing our canvas element in a variable, we can set up the canvas context. The context is place where we drawing is rendered. 
+    <pre>
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+    </pre>
+    The object that’s returned by getContext is an instance of CanvasRenderingContext2D. 
+    </p>
+    <hr>
+    <p><strong>Drawing a Rectange to the Canvas</strong>
+        <canvas id="myCanvas1" class="myCanvas">
+            Sorry! Your browser doesn’t support Canvas.
+        </canvas>
+    <pre>
+        var canvas = document.getElementById("myCanvas"); 
+        var context = canvas.getContext("2d"); 
+        context.strokeStyle = "red";
+        context.fillStyle = "rgba(0, 0, 255, 0.5)";
+        context.fillRect(10, 10, 100, 100);   
+        context.strokeRect(10, 10, 100, 100);
+
+    </pre>
+    </p>
+    <hr>
+    <p><strong>Variations on fill Style</strong> Instead of a color as our fillStyle, we can use CanvasGradient or CanvasPattern Object
+    <pre>
+        function drawGradient() {
+            var canvas = document.getElementById("demo3");
+            var context = canvas.getContext("2d");
+            context.strokeStyle = "red";
+            var gradient = context.createLinearGradient(0, 0, 0, 200); 
+        }
+        
+    </pre>
+    </p>
+    <hr>
+    <p><strong>Drawing other Shapes by Creating Paths: </strong> 
+        We can draw many shapes as we want by the help of the canvas. Paths create a blueprint for lines, arcs, and shapes, but paths are invisible until we give them stroke. We first set the strokeStyle and then called fillRect.  With more complex shapes, we need to take three steps: layout the path, stroke the path, and fill the path. 
+        <pre>
+            function drawCircle(canvas) {
+                var context = canvas.getContext("2d");
+                context.beginPath();
+            }
+            
+        </pre>
+        Now we need to create an arc. An arc is a segment of a circle, but as there’s no method for creating a circle, we can draw a 360 degree arc. We create it using the arc method. 
+
+        <pre>
+            function drawCircle(canvas) {
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+                context.beginPath();
+                context.arc(50, 50, 30, 0, Math.PI*2, true);
+            }               
+        </pre>
+        The signature of the arc method is: arc(x, y, radious, startAngle, endAgnle, anticlockwise).
+The x and y represents were on the canvas one want the arc’s path to begin. 
+
+        <pre>
+            function drawCircle(canvas) {
+                var context = canvas.getContext("2d");
+                context.beginPath();
+                context.arc(50, 50, 30, 0, Math.PI*2, true);
+                context.closePath();
+                context.strokeStyle = "red";
+                context.fillStyle = "blue";
+                context.lineWidth = 3; 
+            }
+            
+        </pre>
+
+        <canvas id="myCanvas2" class="myCanvas">
+            Sorry! Your browser doesn’t support Canvas.
+        </canvas>
+    </p>
+    <hr>
+    <p><strong>SVG</strong>SVG stands for Scalable Vector Graphics. A specific file format that allows to describe vector graphics using XML. A major selling point of vector graphics in general is that, unlike bitmap images(such as GIF, JPEG, PNG, and TIFF), vector images preserve their quality even as blow them up or shrink them. 
+
+        XML stands for eXtensible Markup Language. Likt HTML, its’s a markup metalanguage. In English its an system meant to annotate text. 
+        <div class="svg">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+                <circle cx="50" cy="50" r="25" fill="red"/>
+            </svg>
+        </div>
+    </p>
+    <hr>
+    <p><strong>Drag & Drop API: </strong> This API allows us to specify that certain elements are draggable, and then specify what should happen when these draggable elements are dragged over or dropped onto the elements on the page. 
+    </p>
+    <hr>
+    <p><strong>Making Elements Draggable: </strong> The next step is to make our images draggable. In order to do that, we add the draggable attribute to them, and set the value to true;       
+        <pre>
+            <img data-src="https://learnable-static.s3.amazonaws.com/premium/reeedr/books/html5-css3-for-the-real-world-2nd-edition/images/computer-mouse-pic.svg" width="30" 
+↵alt="mouse treat" id="mouse1" draggable="true">
+<img data-src="https://learnable-static.s3.amazonaws.com/premium/reeedr/books/html5-css3-for-the-real-world-2nd-edition/images/computer-mouse-pic.svg" width="30" 
+↵alt="mouse treat" id="mouse2" draggable="true">
+<img data-src="https://learnable-static.s3.amazonaws.com/premium/reeedr/books/html5-css3-for-the-real-world-2nd-edition/images/computer-mouse-pic.svg" width="30" 
+↵alt="mouse treat" id="mouse3" draggable="true">
+
+        </pre>
+    </p>
+    <hr>
+
+    <p><strong>Draggable is not boolean: </strong> 
+    
+        <pre>var mice = document.querySelectorAll("#mouseContainer img");</pre>
+        We need to loop through all the img elements contained in the mice variable, and add an event listener for the dragstart event on each computer mouse. 
+
+        <pre>
+            var mouse = null;
+            for (var i=0; i < mice.length; i++) {
+            mouse = mice[i];
+            mouse.addEventListener('dragstart', function (event) {
+            // handle the dragstart event
+            });
+}
+
+        </pre>
+    
+    </p>
+    <hr>
+    <p><strong>The Data Transfer Object</strong>DataTransfer Object are one type of object outlined in the Drag and Drop API. These objects allow us to set and get data about the elements that are being dragged. 
+    <pre>
+        mouse.addEventListener("dragstart", function (event) {
+            event.dataTransfer.setData("text/plain", this.id); 
+        });
+        
+    </pre>
+    
+    </p>
+
+
+</body>
+<script>
+    let canvas = document.getElementById('myCanvas1');
+    let context = canvas.getContext('2d');
+    context.strokeStyle = "red"
+    context.fillStyle = "rgba(0,0,255,0.5)";
+    context.fillRect(10,10,100,100);
+    context.strokeRect(10,10,100,100);
+
+    function drawCricle(canvas) {
+        var canvas = canvas.getElementById('myCanvas2')
+        var context = canvas.getContext('2d');
+        context.beginPath();
+        context.arc(50,50,30,0,Math.PI*2, true);
+        context.closePath();
+        context.strokeStyle = 'red'
+        context.fillStyle = 'blue'
+        context.lineWidth = 3;
+        context.fill();
+        context.stroke();
+    }
+</script>
+</html>
