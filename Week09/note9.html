@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 9 Notes</title>
+    <style>
+      h1,
+      h2 {
+        text-align: center;
+      }
+      hr {
+        width: 70%;
+        margin-top: 2em;
+        border: none;
+        background-color: lightgray;
+        height: 1px;
+      }
+      p {
+        margin-left: 1em;
+      }
+      span {
+        color: rgb(62, 158, 221);
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>The Window Object</h1>
+    <p>
+      Any variables that are created in the global scope are actually properties
+      of the object, and any functions are methods of it. In browser environment
+      the global object is the window object, which represents the browser
+      windows that contains a web page.
+    </p>
+    <hr />
+    <p><strong>The Browser Object Model</strong>:</p>
+    <p>
+      The Browser Object Model(BOM) is a collection of properties and methods
+      that contain information about the browser and computer screen.
+      Environments such as Node.js won’t probably have a window object, although
+      they will still have a global object. Global Variables are properties of a
+      global object. The global object is the window object. This means that any
+      global variable created is actually a property of the window object,.
+
+      <pre>
+        x = 6;  // global variable created
+        << 6
+        window.x // same variable can be accessed as a property of the window object
+        << 6
+        // both variables are exactly the same
+        window.x === x;
+        << true        
+      </pre>
+    </p>
+    <hr>
+    <p><strong>Browser Information: </strong></p>
+    <p>The window object has a number of properties and methods that provide information about the user’s browsers. The window object has a navigator property that returns a reference to the Navigator object. The Navigator object contains information about the browser being used.
+    </p>
+    <hr>
+    <p><strong>Location X </strong></p>
+    <p>
+        The window.location property is an object that contains information about the URL of the current page. It contains a number of properties that provide information about different fragments of the URL. The href property returns the full URL as a string 
+        <pre>
+            
+        window.location.href 
+        << "https://www.sitepoint.com/premium/books/javascript-novice-to-ninja"
+
+
+        The protocol property returns a string describing the protocol used ( such as http, https, pop2, ftp) etc. 
+
+        window.location.protocol 
+        << "https:
+
+        </pre>
+        <br>
+        The host property returns a string describes the domain the domain of the URL and the port number 
+        <pre>
+            window.location.host
+            << "www.sitepoint.com"
+
+        </pre>
+        <br>
+        
+        The hostname property returns a string describe the domain of the current URL:
+
+        <pre>
+            window.location.hostname
+            << "www.sitepoint.com"
+
+        </pre>
+        <br>
+        <br>
+        The window.location object has also the following methods
+        <ul>
+            <li>-	The reload() method can be used to force a reload of the current page. It its given parameter of true, it will force the browser to reload the page from the sever, instead of using a cached page. </li>
+            <li>-	The assign() method can be used to load another resource from a URL provided as a parameter</li>
+        </ul>
+
+        <pre>
+            window.location.assign('https://www.sitepoint.com/')
+        </pre>
+        The replace() method is almost the same as the assign() method, except the current page will not be stored in the session history. 
+
+The toString() method returns a string containing the URL: 
+
+<pre>
+    window.location.toString();
+    << "https://www.sitepoint.com/javascript/"
+
+</pre>
+    </p>
+    <hr>
+    <p><strong>The Brower History:</strong></p>
+    <p>
+        The window.history property can be used to access information about any previously visited page in the current brower session. 
+
+        The window.history.go() method can be used to go to a specigic page, where 0 is the current page. 
+
+        <pre>
+            window.history.go(1); // goes forward 1 page
+            window.history.go(0); // reloads the current page
+            window.history.go(-1); // goes back 1 page
+        </pre>
+        There are also the window.history.forward() and window.history.back() methods can be used to navigate forward and backward. 
+    </p>
+    <hr>
+    <p><strong>Controllig Windows:</strong></p>
+    <p>A new window can be opened using the window.open() method. This take the URL of the page to be opened as its first parameter, the window title as its second parameter, and a list of attributes as the third parameter.
+    <pre>
+        const popup = window.open('https://sitepoint.com','
+        SitePoint','width=400,height=400,resizable=yes');
+    </pre>    
+    The close() method can be used to close a window 
+
+Popup.close()
+
+We can also move a window using the window.moveTo() method. This takes two parameter that are X and Y coordinates of the screen that the windows is to be moved to. 
+    <pre>
+        window.moveTo(0,0); // 
+    </pre>
+    </p>
+    <hr>
+    <p><strong>Screen Information:</strong></p>
+    <p>
+        The window.screen object contains information about the screen the browser is displayed on. 
+    <pre>
+        window.screen.height
+        << 1024
+        window.screen.width
+        << 1280
+
+        The availHeight and availWidth can be used to find the height and width of the screen, excluding any operating system menus: 
+
+        window.screen.availWidth
+        << 1280
+        window.screen.availHeight
+        << 995
+
+    </pre>
+    </p>
+    <hr>
+    <p><strong>The Document Object</strong></p>
+    <p>
+        Each window object contains a document object. This object has properties and methods that deal with the page that has been loaded into the window. 
+        <br>
+        Document.write()
+
+-	The write() method simply writes a string of text to the page. If a page has already loaded, it will completely replace the current document. 
+document.write('Hello, world!');
+
+    </p>
+    <hr>
+    <p><strong>Cookies</strong></p>
+    <p>
+        Cookies are small files that are saved locally on a user’s computer. Browser doesn’t remember anything from one request to another. So everytime a user visits a page, nothing about any previous visits is remembered. Cookies can be used to sidestep this problem by storing information that can then be retrieved between requests <br> 
+
+Cookies can be sued for personalizing a user’s browser experience, storing user preferences, keeping track of users choices, authentication and tracking users. The use of cookies for tracking purposes has been much maligned in recent years. 
+<br>
+Creating Cookies 
+<br>
+To create a cookies, we assign it to the JavaScript’s “cookie jar”, usin the document.cookie property 
+        <pre>
+            document.cookie = 'name=Superman';
+            << "name=Superman"
+
+            The document.cookie property acts like a special type of string. 
+
+            document.cookie = 'hero=true';
+            << "hero=true"
+            document.cookie = 'city=Metropolis';
+            << "city=Metropolis"
+
+        </pre>
+    </p>
+    <hr>
+    <p><strong>Reading Cookies:</strong></p>
+    <p><pre>
+        WE can use the document.cookie to read the cookie. 
+
+
+
+
+        document.cookie:
+        << "name=Batman; hero=true; city=Gotham"
+        We can use the split method to break the string into an array containing each name/value pair, then use a for of loop to iterate through the array:
+        const cookies = document.cookie.split("; ");
+        for (crumb of cookies){
+            const [key,value] = crumb.split("=");
+            console.log(`The value of ${key} is ${value}`);
+        }
+        << The value of name is Batman
+        The value of hero is true
+        The value of city is Gotham
+
+
+    </pre></p>
+    <hr>
+    <p><strong>Secure Cookies:</strong></p>
+    <p>Adding the string ;secure to the end of a cookies will ensure its only transmitted over a secure HTTPS network:
+        document.cookie = 'name=Batman; secure';
+    </p>
+    <hr>
+    <p><strong>Deleting Cookies:</strong>
+        To remove a cookie, we ned to set it to expire at a time in the past. 
+
+document.cookie = 'name=Batman; expires=Thu, 01 Jan 1970 00:00:01 GMT';
+
+    </p>
+    <hr>
+    <hr>
+    <h1>HTML5 API </h1>
+    <p>
+        
+HTML5 is the latest version of the HyperText Markup Language used to create web pages. 
+<br>
+<strong>The data- Attribute </strong>
+
+The data – attribute is a way of embedding data in webpage using custom attributes that are ignored by the browser. Their sole purpose is to be used to by a JavaScript Program. It means they are perfect for adding data that can be used as a hook that the program utilizes to access information about particular element on the page. 
+        <pre>
+                    data-powers = 'flight superSpeed'
+        data-rating = '5' 
+        data-dropdown 
+        data-user = 'DAZ' 
+        data-max-length = '32'
+
+
+        <div id='hero' data-powers='flight superSpeed'>
+            Superman
+        </div>
+        The data-powers attribute can be accessed using the following code:
+        const superman = document.getElementById('hero');
+        const powers = superman.dataset.powers;
+        << 'flight superSpeed'
+
+        </pre>
+    </p>
+    <hr>
+    <p><strong>HTML5 APIs:</strong></p>
+    <p>
+        The HTML5 specification contains  a number of API’s that help gain access to hardware, such as cameras, batteries, geolocation, and the graphics card. Hardware evolves quickly, and APIs are frequently introduced to give developer access, and control new features that appear in the latest devices. 
+    </p>
+    <hr>
+    <p><strong>HTML5 Web Storage</strong></p>
+    <p>
+        
+The Web Storage API provides a key-value store on the client’s computer that is similar to using cookies but has fewer restrictions, more storage capacity, and is generally easier to use. 
+
+localStorage.setItem('name', 'Walter White');
+<pre>
+    To illustrate that it’s being saved locally, try completely closing your browser, reopening it, and entering the following code in the console:
+localStorage.getItem('name'); 
+<< "Walter White"
+
+</pre>
+
+    </p>
+    <hr>
+    <p><strong>Geolocation</strong></p>
+    <p>
+        This API is used to obtain the geographical position of the device. This means it can be used to find the user’s exact location, then link to nearby places or measure the speed at which the user is moving. 
+        <pre>
+            navigator.geolocation.getCurrentPosition(youAreHere);
+
+
+            function youAreHere(position) {
+                console.log(`Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`); 
+            }
+
+        </pre>
+        The position object has several other properties that can be used to find out information about the location and movement of the device. 
+        <ul>
+            <li>position.speed property returns the ground speed of the device in meters per second.</li>
+            <li>position.altitude property returns an estimate of the device’s altitude in meters above theWGS84ellipsoid, which is a standard measurement for the center of the Earth.</li>
+            <li>position.heading property returns the direction the device is moving in. This is measured as a bearing in degrees, clockwise from North.</li>
+            <li>position.timestamp property returns the time that the position information was recorded.</li>
+        </ul>
+    </p>
+    <hr>
+    <p><strong>Service Workers: </strong></p>
+    <p>
+        The Service Worker API allows a worker script to run in the background with the added benefit of being able to intercept network requests. This allows to take the alternative action if the network is offline, and effectively creation app-like offline experiences. 
+    </p>
+    <hr>
+    <p><strong>Web Sockets:</strong></p>
+
+    <p>It uses a system of request and response when a request is sent. Websocket is a new protocol that allows two-way communication with a server- also known as push messaging. This means that a connection is kept open and responses are pushed to the client as soon as they are received. </p>
+
+    <hr>
+    <p><strong>Notifications:</strong></p>
+    <p>The Notification API allows to show messages using the system’s notifcations. This is usally a popup in the corener of the screen.
+        
+    <pre>
+        if(window.Notification) {
+            Notification.requestPermission();
+        }
+        
+        if(window.Notification) {
+            Notification.requestPermission()
+            .then((permission) => {
+                if(Notification.permission === 'granted') {
+                new Notification('Hello JavaScript!');
+                }
+            });
+        }
+        
+        const notification = new Notification('JavaScript: Novice to Ninja',{
+            body: 'The new book from SitePoint',
+            icon: 'sitepointlogo.png'
+        });
+        
+    </pre>
+    
+    </p>
+  </body>
+</html>
