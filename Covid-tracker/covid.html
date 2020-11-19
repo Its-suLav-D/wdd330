@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Covid-19 Tracker</title>
+    <link rel="stylesheet" href="./covid.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+      integrity="sha256-t9UJPrESBeG2ojKTIcFLPGF7nHi2vEc7f5A2KpH/UBU="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="app__left">
+        <div class="app__header">
+          <h1>Covid-19 Tracker</h1>
+          <div class="dropdown">
+            <form>
+              <select name="countries" id="countries">
+                <option value="worldwide">Worldwide</option>
+              </select>
+            </form>
+          </div>
+        </div>
+
+        <div class="app__stats">
+          <div class="card card-coral">
+            <h3 class="title">Cases</h3>
+
+            <div class="bar">
+              <div class="emptybar"></div>
+              <div class="filledbar"></div>
+              <div id="content"></div>
+            </div>
+          </div>
+          <div class="card card-green">
+            <h3 class="title">Recoveries</h3>
+            <div class="bar">
+              <div class="emptybar"></div>
+              <div class="filledbar"></div>
+              <div id="recovered"></div>
+            </div>
+          </div>
+          <div class="card card-orange">
+            <h3 class="title">Deaths</h3>
+            <div class="bar">
+              <div class="emptybar"></div>
+              <div class="filledbar"></div>
+              <div id="deaths"></div>
+            </div>
+          </div>
+        </div>
+
+        <canvas id="myChart"></canvas>
+      </div>
+      <div class="app__right">
+        <div class="app__information">
+          <div class="table">
+          <table id="countrylist">
+            <thead>
+              <tr>
+                <th>Country</th>
+                <th>Cases</th>
+                <th>Deaths</th>
+                <th>Recovered</th>
+                <th>Cases per day</th>
+                <th>Deaths per day</th>
+                <th>Recovered per day</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+          <canvas id="barChart"></canvas>
+        </div>
+    </div>
+
+    <!-- 
+    -->
+  </body>
+  <script src="./covid.js" type="module"></script>
+  <script src="./lineGraph.js" type="module"></script>
+  <script src="./barChart.js" type="module"></script>
+</html>

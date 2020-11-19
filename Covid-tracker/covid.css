@@ -1,0 +1,166 @@
+* {
+  margin: 0;
+}
+body {
+  background-color: #f1f2f5;
+}
+select {
+  padding: 12px;
+  text-align: center;
+}
+h3 {
+  letter-spacing: 0.2rem;
+  font-weight: lighter;
+}
+.app {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.app__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.app__header > h1 {
+  color: #fc3c3c;
+  font-size: 2rem;
+}
+.card > .title {
+  text-align: center;
+}
+#content,
+#recovered,
+#deaths {
+  text-align: center;
+}
+.fetchCases {
+  margin-top: 1em;
+  color: rgba(245, 143, 143, 0.849);
+}
+.fetchRecovered {
+  color: lightgreen;
+  margin-top: 1em;
+}
+.fetchDeaths {
+  margin-top: 1em;
+  color: lightsalmon;
+}
+.app__stats {
+  display: flex;
+  justify-content: space-between;
+}
+.card {
+  background-color: #fff;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  transition: 0.4s ease-out;
+  width: 100%;
+  margin-left: 1em;
+  padding: 2em;
+  cursor: pointer;
+}
+.card-coral {
+  border-top: 10px solid lightcoral;
+}
+.card-green {
+  border-top: 10px solid lightgreen;
+}
+.card-orange {
+  border-top: 10px solid lightsalmon;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+.app__left {
+  flex: 0.9 !important;
+}
+
+p {
+  font-weight: lighter;
+  margin-top: 1em;
+}
+
+.app__information {
+  background-color: #fff;
+}
+
+.countryLogo {
+  width: 30%;
+  margin-right: 1em;
+}
+.app__information {
+  background-color: #fff;
+  height: 900px;
+  width: 100%;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+}
+
+.table {
+  height: 600px;
+  width: 400px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+#countrylist {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+}
+td {
+  cursor: pointer;
+}
+tbody {
+  text-align: center;
+}
+
+tr {
+  border: 1px solid;
+  padding: 0.5em;
+  height: 44px;
+}
+tr:nth-child(even) {
+  background-color: honeydew;
+}
+
+thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: center;
+}
+th,
+td {
+  padding: 12px 20px;
+}
+tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+#barChart {
+  margin-top: 2em;
+}
+#myChart {
+  margin-top: 2em;
+}
+.margin {
+  display: flex;
+}
+
+@media (max-width: 900px) {
+  .app {
+    flex-direction: column;
+  }
+}
