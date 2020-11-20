@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 10 Notes</title>
+    <style>
+      h1,
+      h2 {
+        text-align: center;
+      }
+      hr {
+        width: 70%;
+        margin-top: 2em;
+        border: none;
+        background-color: lightgray;
+        height: 1px;
+      }
+      p {
+        margin-left: 1em;
+      }
+      span {
+        color: rgb(62, 158, 221);
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Form Validation</h1>
+    <p><strong>Client-Side Form Validation</strong></p>
+    <p>
+      It is important to ensure all required form controls are filled out, in
+      the correct format. It is also known as client-side form validation, and
+      helps ensure data submitted matches the requirements set forth in the
+      various form controls. It is an important feature of good User Experience.
+      If the invalid-data gets to the server and is then rejected, a noticeable
+      delay is caused by a round trip to the server and then back to the
+      client-side to tell the user to fix their data.
+    </p>
+    <hr />
+    <p><strong>Form Validation</strong></p>
+    <p>
+      When the data in entered, the browser will check to see that the-data is
+      in the correct format and within the constraints set by the application.
+      Validation done in the browser is called client-side validation, while
+      validation done on the server is called server-side validation.
+      <br>
+      Types of Client - Side Validation 
+
+      <ul>
+          <li>Built-in form validation: It uses HTML5 form validation features, which we've discussed in many places throughout this module. This validation generally doesn't require much JavaScript.</li>
+          <li>-	JavaScript – validation is coded using JavaScript. This validation is completely customizable, but you need to create it all (or use a library).</li>
+      </ul>
+    </p>
+    <hr>
+    <p><strong>Using Form Validation</strong></p>
+    <p><ul>
+    <li>required: Specifies whether a form field needs to be filled in before the form can be submitted.</li>
+    <li>minlength and maxlength: Specifies the minimum and maximum length of textual data (strings)</li>
+    <li>min and max: Specifies the minimum and maximum values of numerical input types</li>
+    <li>type: Specifies whether the data needs to be a number, an email address, or some other specific preset type. </li>
+    <li>pattern: Specifies a regular expression that defines a pattern the entered data needs to follow.</li></ul></p>
+<hr>
+
+    <p><strong>Validating Against a Regular Expression</strong></p>
+    <p>A useful validation feature is the pattern attribute, which expects a Regular Expression as its value. A regular expression is a pattern that can be used to match character combinations in text strings, so regex are ideal for form validation. 
+        <pre>
+            •	a — Matches one character that is a (not b, not aa, and so on).
+            •	abc — Matches a, followed by b, followed by c.
+            •	ab?c—Matches a, optionally followed by a single b, followed by c. ( ac or abc)
+            •	ab*c—Matches a, optionally followed by any number of bs, followed by c. ( ac , abc, abbbbbc, and so on).
+            •	a|b — Matches one character that is a or b.
+            •	abc|xyz — Matches exactly abc or exactly xyz (but not abcxyz or a or y, and so on).
+
+        </pre>
+        <br>
+        <pre>
+            &lt;form&gt;
+                &lt;label&gt; for="choose">Would you prefer a banana or a cherry?/label&gt;
+                &lt;input&gt;id="choose" name="i_like" required pattern="[Bb]anana|[Cc]herry"&gt;
+                &lt;button &gt;Submit/button&gt;
+              &lt;/form&gt;
+        </pre>          
+    </p>
+    <hr>
+    <p><strong>Validating Forms using JavaScript</strong></p>
+        <pre>
+            -	validationMessage: Returns a localized message describing the validation constraints that the control doesn’t satisfy. 
+
+            -	Validity: Returns a Validity State object that contains several properties describing the validity state of the element. 
+
+            -	patternMismatch: Returs true if the value doesn’t match the specified pattern, and false if it doesn match. If true, the element matches the :invalid CSS pseudo-class. 
+
+            -	tooLong: Returns true if the value is longer than the maximum length specified by the maxlength attribute, or false if it is shorter than or equal to the maximum. If true, the element matches the :invalid CSS pseudo-class. 
+
+            -	rangeOverflow: Returns true if the value is greater than the maximum specified by the max attribute, or false it is less than or equal to the minimum. It true, the element matches the :invalid CSS pseudo-class
+
+            o	rangeUnderflow: Returns true if the value is less than the minimum specified by the min attribute, or false if it is greater than or equal to the minimum. If true, the element matches the :invalid and :out-of-range CSS pseudo-classes.
+
+            o	typeMismatch: Returns true if the value is not in the required syntax (when type is email or url), or false if the syntax is correct. If true, the element matches the :invalid CSS pseudo-class.
+
+            o	Valid: Returns true if the element meets all its validation constraints, and is therefore considered to be valid, or false if it fails any constraint. If true, the element matches the :valid CSS pseudo-class; the :invalid CSS pseudo-class otherwise.
+
+            -	valueMissing: Returns true if the element has a required attribute, but no value, or false otherwise. If true, the element matches the :invalid CSS pseudo-class.
+
+        </pre>
+        <pre>
+            &lt;form&gt;
+                &lt;label for="mail"&gt;I would like you to provide me with an e-mail address:&lt;/label&gt;
+                &lt;input type="email" id="mail" name="mail"&gt;
+                &lt;button&gt;Submit&lt;/button&gt;
+              &lt;/form&gt;
+              
+        </pre>
+<hr>
+<h1>Fetch</h1>
+
+        <p>The Fetch API provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses. IT provides a global fetch() method that provides an easy, logical way to fetch resources asynchronously across the network. The kind of functionality previously used was XMLHTTPREQUEEST. Fetch provides a better alternative that can be easily used by the other technologies such as Service Workers. </p>
+        <p>
+            <ul>
+                <li>The Promise returned from fetch() won’t reject on HTTP error status even if the response is an HTTP 404 or 500. Instead, it will resolve normally (with ok status set to false), and it will only reject on network failure or if anything prevented the request from completing.</li>
+                <li>fetch() won't can receive cross-site cookies; you can’t can establish a cross site session using fetch. Set-Cookie headers from other sites are silently ignored.</li>
+                <li>fetch won’t send cookies, unless you set the credentials init option. (Since Aug 25, 2017. The spec changed the default credentials policy to same-origin. Firefox changed since 61.0b13.)</li>
+            </ul>
+            <code>
+                fetch('http://example.com/movies.json')
+                .then(response => response.json())
+                .then(data => console.log(data));
+
+            </code>
+        </p>
+           
+        <p>
+            <pre>
+                // Example POST method implementation:
+                async function postData(url = '', data = {}) {
+                // Default options are marked with *
+                const response = await fetch(url, {
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    mode: 'cors', // no-cors, *cors, same-origin
+                    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                    credentials: 'same-origin', // include, *same-origin, omit
+                    headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    redirect: 'follow', // manual, *follow, error
+                    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                    body: JSON.stringify(data) // body data type must match "Content-Type" header
+                });
+                return response.json(); // parses JSON response into native JavaScript objects
+                }
+
+                postData('https://example.com/answer', { answer: 42 })
+                .then(data => {
+                    console.log(data); // JSON data parsed by `data.json()` call
+                });
+
+            </pre>
+        </p>
+        <hr>
+        <p><strong>Headers</strong></p>
+        <p>The Headers interface allows us to create own header object via the Headers() constructor. 
+            <pre>
+                const myHeaders = new Headers({
+                    'Content-Type': 'text/plain',
+                    'Content-Length': content.length.toString(),
+                    'X-Custom-Header': 'ProcessThisImmediately'
+                  });
+                  
+            </pre>
+        </p>
+        <hr>
+        <p><strong>Response Objects</strong></p>
+        <p>
+            Response instances are returned when fetch() promises are resolved:
+            <ul>
+                <li>Response.status – An integer (default value 200) containing the response status code. </li>
+                <li>A string (default value “OK”), which corresponds to the HTTP status code message. </li>
+                <li>It is a shorthand for checking that status is in the range 200-299 inclusive. This returns a Boolean. </li>
+            </ul>
+        </p>
+        <hr>
+        <p><strong>Body</strong></p>
+        <p>
+            Both requests and responses may contain body data. A body is an instance of:
+            <pre>
+                •	ArrayBuffer
+                •	ArrayBufferView (Uint8Array and friends)
+                •	Blob/File
+                •	string
+                •	URLSearchParams
+                •	FormData
+
+            </pre>
+        </p>
+       
+            
+      
+  </body>
+</html>
