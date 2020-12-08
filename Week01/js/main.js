@@ -21,19 +21,19 @@ const links = [
   },
   {
     label: "Week 7 Activities",
-    url: "",
+    url: "https://its-sulav-d.github.io/wdd330/Week07/w07dash.html",
   },
   {
     label: "Week 8 Activities",
-    url: "",
+    url: "https://its-sulav-d.github.io/wdd330/Week08/w8dash.html",
   },
   {
     label: "Week 9 Activities",
-    url: "",
+    url: "https://its-sulav-d.github.io/wdd330/Week09/w9dash.html",
   },
   {
     label: "Week 10 Activities",
-    url: "",
+    url: "https://its-sulav-d.github.io/wdd330/Week10/quakes/w10dash.html",
   },
 ];
 
