@@ -35,6 +35,10 @@ const links = [
     label: "Week 10 Activities",
     url: "https://its-sulav-d.github.io/wdd330/Week10/quakes/w10dash.html",
   },
+  {
+    label: "Final Project (COVID-19 Tracker)",
+    url: "https://its-sulav-d.github.io/wdd330/Covid-tracker/covid.html",
+  },
 ];
 
 links.forEach((link) => {
