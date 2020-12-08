@@ -1,5 +1,20 @@
 import { convertToJSON } from "./utility.js";
 
+const caseTypeColor = {
+  cases: {
+    hex: "#CC1034",
+    rgb: "rgb(204, 16, 52)",
+  },
+  recovered: {
+    hex: "#7dd71d",
+    rgb: "rgb(125, 215, 29)",
+  },
+  deaths: {
+    hex: "#fb4443",
+    rgb: "rgb(251, 68, 67)",
+  },
+};
+
 let lineUrl = `https://disease.sh/v3/covid-19/historical/all?lastdays=120`;
 
 let dates = [];
@@ -19,6 +34,14 @@ function dataChart(chartDatas) {
 document
   .getElementById("countries")
   .addEventListener("change", onLineCountryChange);
+// document.getElementById("content").addEventListener("click", (e) => {
+//   console.log(e.target);
+// });
+
+// document
+//   .getElementById("card--recovered")
+//   .addEventListener("click", onCardChange);
+// document.getElementById("card--deaths").addEventListener("click", onCardChange);
 
 async function onLineCountryChange(event) {
   const code = event.target.value;
@@ -52,17 +75,19 @@ async function getHistory(lineUrl) {
 }
 
 const buildChartData = (data) => {
+  console.log("This is chat Data");
+  console.log(data);
   const chartData = [];
   let lastDataPoint;
-  for (let date in data.cases) {
+  for (let date in data.deaths) {
     if (lastDataPoint) {
       let newDataPoint = {
         x: date,
-        y: data["cases"][date] - lastDataPoint,
+        y: data["deaths"][date] - lastDataPoint,
       };
       chartData.push(newDataPoint);
     }
-    lastDataPoint = data["cases"][date];
+    lastDataPoint = data["deaths"][date];
   }
   // console.log(chartData);
   return chartData;
@@ -73,7 +98,7 @@ function createChart() {
   var myChart = new Chart(ctx, {
     type: "line",
     data: {
-      labels: dates, // x- axis
+      labels: dates, // Label for the x-axis of the chart
       datasets: [
         {
           label: "Cases for Last 120 Days ",
