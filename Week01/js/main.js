@@ -33,7 +33,7 @@ const links = [
   },
   {
     label: "Week 10 Activities",
-    url: "https://its-sulav-d.github.io/wdd330/Week10/quakes/w10dash.html",
+    url: "https://its-sulav-d.github.io/wdd330/Week10/w10dash.html",
   },
   {
     label: "Final Project (COVID-19 Tracker)",
