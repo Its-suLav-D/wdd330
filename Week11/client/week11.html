@@ -4,6 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auth Example</title>
+    <style>
+      .errors {
+        border: 1px solid rgb(48, 116, 206);
+        background-color: lightcoral;
+        padding: 0.5em;
+      }
+      form input {
+        margin: 0.5em 0;
+        font-size: 1.4em;
+        background-color: rgb(253, 240, 222);
+        width: 300px;
+      }
+      form button {
+        font-size: 1.2em;
+        padding: 0.4em;
+        background-color: rgb(101, 144, 224);
+      }
+      input:invalid {
+        box-shadow: 0 0 5px 1px rgb(231, 117, 117);
+      }
+      .hidden {
+        display: none;
+      }
+      #content {
+        background-color: #fff;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 10px;
+        transition: 0.4s ease-out;
+        width: 60%;
+        margin: 0 auto;
+        padding: 2em;
+        cursor: pointer;
+      }
+      #content-card {
+        display: flex;
+        justify-content: space-between;
+      }
+      label {
+        margin-right: 1rem;
+      }
+      #createSubmit {
+        cursor: pointer;
+      }
+      #list {
+        background-color: #fff;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 10px;
+        width: 50%;
+        margin: 1em auto;
+      }
+      @media (max-width: 800px) {
+        #content-card {
+          flex-direction: column;
+        }
+        #content-card > input {
+          width: 100%;
+        }
+        .form-control {
+          width: 100%;
+        }
+      }
+    </style>
     <script src="./week11.js" type="module" defer></script>
   </head>
   <body>
@@ -18,9 +82,36 @@
             id="password"
             placeholder="password"
           />
-          <button type="submit">Login</button>
+          <button type="submit" id="login">Login</button>
         </form>
       </div>
+
+      <div id="content" class="hidden">
+        <form name="postForm" id="content-card">
+          <div>
+            <label for="title">Title</label>
+            <input
+              type="text"
+              class="form-control"
+              name="title"
+              placeholder="title"
+              required
+            />
+          </div>
+          <div>
+            <label for="content">Content</label>
+            <input
+              type="text"
+              class="form-control"
+              name="content"
+              placeholder="content"
+              required
+            />
+          </div>
+          <input type="submit" id="createSubmit" />
+        </form>
+      </div>
+      <ul id="list"></ul>
     </main>
   </body>
 </html>

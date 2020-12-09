@@ -24,9 +24,9 @@ export default class Auth {
       // let's get the user details as well and store them locally in the class
       // you can pass a query to the API by appending it on the end of the url like this: 'users?email=' + email
       this.user = await this.getCurrentUser(username.value);
-      console.log(data);
       // hide the login form.
-      document.getElementById("login").classList.add("hidden");
+      hideLogin();
+      showPost();
       // clear the password
       password.value = "";
 
@@ -49,7 +49,6 @@ export default class Auth {
         null,
         this.jwtToken
       );
-
       console.log(data);
       return data[0];
     } catch (error) {
@@ -65,3 +64,15 @@ export default class Auth {
     return this.jwtToken;
   }
 } // end auth class
+
+function showLogin() {
+  document.getElementById("login").classList.remove("hidden");
+}
+
+function hideLogin() {
+  document.getElementById("login").classList.add("hidden");
+}
+
+function showPost() {
+  document.getElementById("content").classList.remove("hidden");
+}
