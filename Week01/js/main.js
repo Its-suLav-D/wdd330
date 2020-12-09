@@ -36,6 +36,10 @@ const links = [
     url: "https://its-sulav-d.github.io/wdd330/Week10/w10dash.html",
   },
   {
+    label: "Week 11 Activity",
+    url: "https://its-sulav-d.github.io/wdd330/Week11/client/week11.html",
+  },
+  {
     label: "Final Project (COVID-19 Tracker)",
     url: "https://its-sulav-d.github.io/wdd330/Covid-tracker/covid.html",
   },
